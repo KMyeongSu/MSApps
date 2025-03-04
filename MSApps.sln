@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeoTiffMaker", "src\GeoTiffMaker\GeoTiffMaker.vcxproj", "{DA0CDF5D-5FC4-4866-9951-D490A822C32B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libTest", "src\libTest\libTest.vcxproj", "{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{DA0CDF5D-5FC4-4866-9951-D490A822C32B}.Release|x64.Build.0 = Release|x64
 		{DA0CDF5D-5FC4-4866-9951-D490A822C32B}.Release|x86.ActiveCfg = Release|Win32
 		{DA0CDF5D-5FC4-4866-9951-D490A822C32B}.Release|x86.Build.0 = Release|Win32
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Debug|x64.ActiveCfg = Debug|x64
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Debug|x64.Build.0 = Debug|x64
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Debug|x86.ActiveCfg = Debug|Win32
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Debug|x86.Build.0 = Debug|Win32
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Release|x64.ActiveCfg = Release|x64
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Release|x64.Build.0 = Release|x64
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Release|x86.ActiveCfg = Release|Win32
+		{7281A94D-D6FB-4BC4-99C0-F4E2EDCCF639}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
