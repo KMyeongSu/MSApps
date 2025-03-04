@@ -31,4 +31,11 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+public:
+	CEdit m_rpcFilePath;
+	CMFCEditBrowseCtrl m_TiffFilePath;
+	CButton m_btnGeoTiffApply;
+	afx_msg void MoveCursorToEnd();
+	
 };

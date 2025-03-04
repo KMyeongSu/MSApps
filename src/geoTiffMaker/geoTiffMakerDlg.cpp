@@ -59,13 +59,16 @@ CgeoTiffMakerDlg::CgeoTiffMakerDlg(CWnd* pParent /*=nullptr*/)
 void CgeoTiffMakerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT1, m_rpcFilePath);
+	DDX_Control(pDX, IDC_MFCEDITBROWSE1, m_TiffFilePath);
+	DDX_Control(pDX, IDC_BUTTON2, m_btnGeoTiffApply);
 }
 
 BEGIN_MESSAGE_MAP(CgeoTiffMakerDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-END_MESSAGE_MAP()
+	END_MESSAGE_MAP()
 
 
 // CgeoTiffMakerDlg 메시지 처리기
@@ -153,3 +156,18 @@ HCURSOR CgeoTiffMakerDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CgeoTiffMakerDlg::MoveCursorToEnd()
+{
+	// m_rpcFilePath는 'RPC File' 입력 필드 (CEdit 컨트롤)
+	// m_TiffFilePath는 'GeoTIFF File' 입력 필드 (CMFCEditBrowseCtrl)
+
+	// CEdit의 끝으로 커서 이동
+	m_rpcFilePath.SetSel(-1, -1);
+	m_TiffFilePath.SetSel(-1, -1);
+
+	//CEdit* pEdit = m_TiffFilePath.GetEditCtrl();
+	//if (pEdit)
+	//{
+	//	pEdit->SetSel(-1, -1);  // CEdit의 끝으로 커서 이동
+	//}
+}
