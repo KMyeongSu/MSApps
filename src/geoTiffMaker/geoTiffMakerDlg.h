@@ -37,5 +37,5 @@ public:
 	CMFCEditBrowseCtrl m_TiffFilePath;
 	CButton m_btnGeoTiffApply;
 	afx_msg void MoveCursorToEnd();
-	
+	afx_msg void OnBtnGeoTiffApply();
 };

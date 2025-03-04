@@ -68,7 +68,8 @@ BEGIN_MESSAGE_MAP(CgeoTiffMakerDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	END_MESSAGE_MAP()
+	ON_BN_CLICKED(IDC_BUTTON2, &CgeoTiffMakerDlg::OnBtnGeoTiffApply)
+END_MESSAGE_MAP()
 
 
 // CgeoTiffMakerDlg 메시지 처리기
@@ -171,3 +172,33 @@ void CgeoTiffMakerDlg::MoveCursorToEnd()
 	//	pEdit->SetSel(-1, -1);  // CEdit의 끝으로 커서 이동
 	//}
 }
+
+#include <string>
+void CgeoTiffMakerDlg::OnBtnGeoTiffApply()
+{
+	// m_rpcFilePath에서 경로 읽어오기
+	CString rpcFilePath;
+  	m_rpcFilePath.GetWindowText(rpcFilePath);
+	std::string rpcFilePathStr = std::string(CT2CA(rpcFilePath));
+	//std::string rpcFilePathStr((CT2A(rpcFilePath)); // <- casting type 이 없어서 변환이 안됨
+	//std::string rpcFilePathStr(std::string(CT2CA(rpcFilePath))); // 안됨
+	//std::string rpcFilePathStr = std::string(CT2CA(rpcFilePath.operator LPCTSTR())); // 성공. TCHR 자동으로 
+	
+	
+	// m_TiffFilePath에서 경로 읽어오기
+	CString tiffFilePath;
+	m_TiffFilePath.GetWindowText(tiffFilePath);
+	std::string tiffFilePathStr = std::string(CT2A(tiffFilePath));
+	//std::string tiffFilePathStr(CT2A(tiffFilePath)); // <- casting type 이 없어서 변환이 안됨
+
+	// CString 받아옴
+ 	//AfxMessageBox(rpcFilePath);
+	//AfxMessageBox(tiffFilePath);
+
+	// std::string 받아옴
+	AfxMessageBox(rpcFilePathStr.c_str());
+	AfxMessageBox(tiffFilePathStr.c_str());
+
+	// 이후 로직에 해당 경로를 사용하는 코드 추가
+}
+
