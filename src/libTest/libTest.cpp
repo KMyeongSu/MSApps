@@ -2,26 +2,95 @@
 //
 
 #include <iostream>
-#include <opencv2/opencv.hpp>
+//#include <opencv2/opencv.hpp>
+#include "gdal.h"
+#include "gdal_priv.h"
 
+//OpenCV TEST
+//int main()
+//{
+//    // 이미지 파일을 불러옵니다
+//    cv::Mat image = cv::imread("test.png", cv::IMREAD_COLOR);
+//
+//    if (image.empty()) {
+//        std::cout << "fail" << std::endl;
+//        return -1;
+//    }
+//
+//    // 이미지를 창에 띄웁니다
+//    cv::imshow("Test Image", image);
+//
+//    // 키 입력을 기다립니다
+//    cv::waitKey(0);
+//
+//    return 0;
+//}
+
+// GDALTest.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+
+//GDAL TEST
 int main()
+
 {
-    // 이미지 파일을 불러옵니다
-    cv::Mat image = cv::imread("test.png", cv::IMREAD_COLOR);
 
-    if (image.empty()) {
-        std::cout << "fail" << std::endl;
-        return -1;
-    }
+    // register all drivers
 
-    // 이미지를 창에 띄웁니다
-    cv::imshow("Test Image", image);
+    GDALAllRegister();
 
-    // 키 입력을 기다립니다
-    cv::waitKey(0);
+
+
+    // Dataset
+
+    GDALDataset* dataset = (GDALDataset*)GDALOpen(
+
+        "F:\\INFUSION_DATA\\WaterBody\\K3_20141023_RGBN_Resize.bin",
+
+        GA_ReadOnly);
+
+    printf("Description: %s\n", dataset->GetDescription());
+
+    printf("DriverName: %s\n", dataset->GetDriverName());
+
+    printf("Rater Count: %d\n", dataset->GetRasterCount());
+
+
+
+    // Band
+
+    GDALRasterBand* band = dataset->GetRasterBand(1);
+
+
+
+    int blockWidth, blockHeight;
+
+
+
+    printf("Data Type: %d", band->GetRasterDataType());
+
+    printf("Data Type Size: %d\n", GDALGetDataTypeSize(band->GetRasterDataType()));
+
+    band->GetBlockSize(&blockWidth, &blockHeight);
+
+
+
+    printf("Block Width: %d\n", blockWidth);
+
+    printf("Block Height: %d\n", blockHeight);
+
+
+
+    printf("Width: %d\n", band->GetXSize());
+
+    printf("Height: %d\n", band->GetYSize());
+
+
+
+    getchar();
 
     return 0;
+
 }
+
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
 // 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
