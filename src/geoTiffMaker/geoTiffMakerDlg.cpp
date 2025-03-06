@@ -174,6 +174,7 @@ void CgeoTiffMakerDlg::MoveCursorToEnd()
 }
 
 #include <string>
+#include "GDALManager.h"
 void CgeoTiffMakerDlg::OnBtnGeoTiffApply()
 {
 	// m_rpcFilePath에서 경로 읽어오기
@@ -199,6 +200,7 @@ void CgeoTiffMakerDlg::OnBtnGeoTiffApply()
 	AfxMessageBox(rpcFilePathStr.c_str());
 	AfxMessageBox(tiffFilePathStr.c_str());
 
+	test();
 	// 이후 로직에 해당 경로를 사용하는 코드 추가
 }
 
