@@ -24,8 +24,14 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GDALDefines.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GDALMakeGeoTiff.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="GDALManager.h">
-      <Filter>src</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +42,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GDALManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GDALMakeGeoTiff.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
