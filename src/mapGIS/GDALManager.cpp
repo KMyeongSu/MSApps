@@ -5,3 +5,11 @@
 MAPGIS_API void test() {
     MessageBox(NULL, "Success", "Test", MB_OK);
 }
+//CGDALManager::CGDALManager()
+//{
+//
+//}
+//CGDALManager::~CGDALManager()
+//{
+//
+//}
