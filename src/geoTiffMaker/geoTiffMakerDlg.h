@@ -1,41 +1,31 @@
-﻿
-// geoTiffMakerDlg.h: 헤더 파일
-//
+﻿#pragma once
 
-#pragma once
-
-
-// CgeoTiffMakerDlg 대화 상자
 class CgeoTiffMakerDlg : public CDialogEx
 {
-// 생성입니다.
 public:
-	CgeoTiffMakerDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
+	CgeoTiffMakerDlg(CWnd* pParent = nullptr);
 
-// 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_GEOTIFFMAKER_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 지원입니다.
 
-
-// 구현입니다.
 protected:
 	HICON m_hIcon;
 
-	// 생성된 메시지 맵 함수
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
+	virtual BOOL OnInitDialog(); // 온 초기화 시 호출되는 함수
 	DECLARE_MESSAGE_MAP()
 
 public:
-	CEdit m_rpcFilePath;
-	CMFCEditBrowseCtrl m_TiffFilePath;
-	CButton m_btnGeoTiffApply;
-	afx_msg void MoveCursorToEnd();
-	afx_msg void OnBtnGeoTiffApply();
+	CMFCEditBrowseCtrl m_TiffFilePath;  // TIFF 파일 경로
+	CButton m_btnGeoTiffApply;          // GeoTIFF 적용 버튼
+	CComboBox m_CorSysSelect;           // 좌표계 선택 ComboBox
+	CEdit m_latitude;                   // 위도 입력 필드
+	CEdit m_longitude;                  // 경도 입력 필드
+
+	afx_msg void OnBtnGeoTiffApply();   // 버튼 클릭 시 동작
+	afx_msg void OnCbnSelchangeCombo1(); // 좌표계 선택 변경 시 동작
+	afx_msg void MoveCursorToEnd();      // 커서 끝으로 이동
 };

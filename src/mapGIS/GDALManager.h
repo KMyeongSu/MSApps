@@ -18,8 +18,8 @@ MAPGIS_API void test();
 class CGDALManager
 {
 public:
-    CGDALManager();  // 생성자
-    ~CGDALManager();  // 소멸자
+    //CGDALManager();  // 생성자
+    //~CGDALManager();  // 소멸자
 
     //bool LoadGeoTiff(const std::string& tiffFilePath);  // GeoTIFF 파일 로드
     //bool SaveGeoTiff(const std::string& tiffFilePath);  // GeoTIFF 파일 저장
