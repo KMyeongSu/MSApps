@@ -25,7 +25,9 @@ public:
 	CEdit m_latitude;                   // 위도 입력 필드
 	CEdit m_longitude;                  // 경도 입력 필드
 
-	afx_msg void OnBtnGeoTiffApply();   // 버튼 클릭 시 동작
-	afx_msg void OnCbnSelchangeCombo1(); // 좌표계 선택 변경 시 동작
+	afx_msg void OnBtnGeoTiffApply();   // start버튼
+	afx_msg void OnCbnSelchangeCombo1(); // 좌표계 드롭박스
 	afx_msg void MoveCursorToEnd();      // 커서 끝으로 이동
+
+	void test();
 };

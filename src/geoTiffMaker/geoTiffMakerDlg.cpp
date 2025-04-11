@@ -10,7 +10,6 @@
 #define new DEBUG_NEW
 #endif
 
-// 생성자 및 기본 기능
 CgeoTiffMakerDlg::CgeoTiffMakerDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_GEOTIFFMAKER_DIALOG, pParent)
 {
@@ -27,7 +26,6 @@ void CgeoTiffMakerDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT3, m_longitude);
 }
 
-// 메시지 맵
 BEGIN_MESSAGE_MAP(CgeoTiffMakerDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
@@ -44,7 +42,8 @@ BOOL CgeoTiffMakerDlg::OnInitDialog()
 	// 좌표계 선택 ComboBox 초기화
 	m_CorSysSelect.AddString(_T("WGS84"));
 	m_CorSysSelect.AddString(_T("UTM"));
-	m_CorSysSelect.SetCurSel(0); // 기본값 WGS84 선택
+	//m_CorSysSelect.InsertString(5,"UTM"); // InsertString 순서지정 가능
+	m_CorSysSelect.SetCurSel(1); // 기본값 WGS84 선택
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -63,6 +62,27 @@ void CgeoTiffMakerDlg::MoveCursorToEnd()
 	// CEdit의 끝으로 커서 이동
 	m_TiffFilePath.SetSel(-1, -1);
 }
+
+void CgeoTiffMakerDlg::test()
+{
+	// 위도와 경도 읽기
+	CString latStr, lonStr;
+	m_latitude.GetWindowText(latStr);   // 위도
+	m_longitude.GetWindowText(lonStr);  // 경도
+
+	// CString -> double로 변환
+	double latitude = _ttof(latStr);
+	double longitude = _ttof(lonStr);
+
+	// 확인용
+	CString lat, lon;
+	lat.Format(_T("Latitude: %f"), latitude);
+	lon.Format(_T("Longitude: %f"), longitude);
+
+	AfxMessageBox(lat);  // 위도 출력
+	AfxMessageBox(lon);  // 경도 출력
+}
+
 
 
 // 파일 경로 및 좌표 읽기
