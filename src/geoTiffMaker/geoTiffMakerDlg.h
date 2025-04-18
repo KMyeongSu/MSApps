@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include <string>
 class CgeoTiffMakerDlg : public CDialogEx
 {
 public:
@@ -28,6 +28,9 @@ public:
 	afx_msg void OnBtnGeoTiffApply();   // start버튼
 	afx_msg void OnCbnSelchangeCombo1(); // 좌표계 드롭박스
 	afx_msg void MoveCursorToEnd();      // 커서 끝으로 이동
+	afx_msg void OnBtnCreateEmptyGeoTiff();  // 빈 GeoTIFF 생성 버튼 클릭 이벤트
+
+	void CreateBlackTiff(const std::string& filePath);  // 빈 TIFF 생성 함수
 
 	void test();
 };

@@ -9,6 +9,7 @@
 #define IDR_MAINFRAME                   128
 #define IDC_EDIT1                       1000
 #define IDC_BUTTON1                     1001
+#define IDC_BUTTON_TEST                 1001
 #define IDC_MFCEDITBROWSE1              1002
 #define IDC_BUTTON2                     1003
 #define IDC_EDIT2                       1004

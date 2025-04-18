@@ -5,6 +5,7 @@
 #include "afxdialogex.h"
 #include <string>
 #include "GDALManager.h"
+#include <ogrsf_frmts.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +33,7 @@ BEGIN_MESSAGE_MAP(CgeoTiffMakerDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON2, &CgeoTiffMakerDlg::OnBtnGeoTiffApply)
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CgeoTiffMakerDlg::OnCbnSelchangeCombo1)
+	ON_BN_CLICKED(IDC_BUTTON_TEST, &CgeoTiffMakerDlg::OnBtnCreateEmptyGeoTiff)
 END_MESSAGE_MAP()
 
 // 좌표계 ComboBox 초기화
@@ -41,9 +43,9 @@ BOOL CgeoTiffMakerDlg::OnInitDialog()
 
 	// 좌표계 선택 ComboBox 초기화
 	m_CorSysSelect.AddString(_T("WGS84"));
-	m_CorSysSelect.AddString(_T("UTM"));
+	//m_CorSysSelect.AddString(_T("UTM"));
 	//m_CorSysSelect.InsertString(5,"UTM"); // InsertString 순서지정 가능
-	m_CorSysSelect.SetCurSel(1); // 기본값 WGS84 선택
+	m_CorSysSelect.SetCurSel(0); // 기본값 WGS84 선택
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -88,10 +90,19 @@ void CgeoTiffMakerDlg::test()
 // 파일 경로 및 좌표 읽기
 void CgeoTiffMakerDlg::OnBtnGeoTiffApply()
 {
+	// m_rpcFilePath에서 경로 읽어오기
+	/*CString rpcFilePath;
+	m_rpcFilePath.GetWindowText(rpcFilePath);
+	std::string rpcFilePathStr = std::string(CT2CA(rpcFilePath));*/
+	//std::string rpcFilePathStr((CT2A(rpcFilePath)); // <- casting type 이 없어서 변환이 안됨
+	//std::string rpcFilePathStr(std::string(CT2CA(rpcFilePath))); // 안됨
+	//std::string rpcFilePathStr = std::string(CT2CA(rpcFilePath.operator LPCTSTR())); // 성공. TCHR 자동으로 
+
 	// m_TiffFilePath에서 경로 읽어오기
 	CString tiffFilePath;
 	m_TiffFilePath.GetWindowText(tiffFilePath);
 	std::string tiffFilePathStr = std::string(CT2A(tiffFilePath));
+	//std::string tiffFilePathStr(CT2A(tiffFilePath)); // <- casting type 이 없어서 변환이 안됨
 
 	// 위도와 경도 읽기
 	CString latitudeStr, longitudeStr;
@@ -110,4 +121,46 @@ void CgeoTiffMakerDlg::OnBtnGeoTiffApply()
 	test();
 }
 
+void CgeoTiffMakerDlg::OnBtnCreateEmptyGeoTiff()
+{
+	// 임시로 빈 GeoTIFF 파일을 생성하는 함수 호출
+	CreateBlackTiff("test_empty_geotiff.tif");
 
+	// 생성 완료 메시지 출력
+	AfxMessageBox(_T("빈 GeoTIFF 파일 생성 완료!"));
+}
+
+void CgeoTiffMakerDlg::CreateBlackTiff(const std::string& filePath)
+{
+	// GDAL 초기화
+	GDALAllRegister();
+
+	// TIFF 드라이버 가져오기
+	GDALDriver* poDriver = GetGDALDriverManager()->GetDriverByName("GTiff");
+	if (poDriver == NULL)
+	{
+		AfxMessageBox(_T("GeoTIFF 드라이버가 없습니다."));
+		return;
+	}
+
+	// 이미지 크기 설정 (예시: 1000x1000 픽셀)
+	int nXSize = 1000;  // 가로
+	int nYSize = 1000;  // 세로
+
+	// 검은색 TIFF 파일 생성 (밴드 1개, 데이터 타입 GDT_Byte)
+	GDALDataset* poDataset = poDriver->Create(filePath.c_str(), nXSize, nYSize, 1, GDT_Byte, NULL);
+	if (poDataset == NULL)
+	{
+		AfxMessageBox(_T("TIFF 파일 생성 실패."));
+		return;
+	}
+
+	// 레스터 밴드 가져오기
+	GDALRasterBand* poBand = poDataset->GetRasterBand(1);
+
+	// 검은색으로 채우기 (픽셀 값 0)
+	poBand->Fill(0);
+
+	// 파일 저장 완료
+	GDALClose(poDataset);  // 파일 닫기
+}

@@ -77,6 +77,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <LibraryPath>C:\김명수\MSApps\lib\3rdparty\gdal_v3.10.0\debug;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>C:\김명수\MSApps\include\3rdparty\gdal_v3.10.0;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -101,7 +103,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration);$(SolutionDir)3rdparty\gdal_v3.10.0\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mapGIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mapGIS.lib;gdal_i.lib;ogdi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
