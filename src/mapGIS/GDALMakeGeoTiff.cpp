@@ -34,6 +34,7 @@ bool CGDALMakeGeotiff::ApplyGeoTransformFromCoord()
     }
 
     OGRSpatialReference oSRS;
+    /*oSRS.SetWellKnownGeogCS("EPSG:4326");*/
     oSRS.SetWellKnownGeogCS("WGS84");
     char* pszWKT = nullptr;
     oSRS.exportToWkt(&pszWKT);

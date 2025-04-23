@@ -44,6 +44,8 @@ BOOL CgeoTiffMakerDlg::OnInitDialog()
 
 	// 좌표계 선택 ComboBox 초기화
 	m_CorSysSelect.AddString(_T("WGS84"));
+	m_CorSysSelect.AddString(_T("EPSG:4326"));
+	m_CorSysSelect.AddString(_T("EPSG:32652"));
 	//m_CorSysSelect.AddString(_T("UTM"));
 	//m_CorSysSelect.InsertString(5,"UTM"); // InsertString 순서지정 가능
 	m_CorSysSelect.SetCurSel(0); // 기본값 WGS84 선택
